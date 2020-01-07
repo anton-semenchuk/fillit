@@ -14,11 +14,14 @@
 # define LIBFT_H
 # include <string.h>
 # include <stdlib.h>
+# include <unistd.h>
+# define BUFF_SIZE 1
+# define MAX_FD 10000
 
 typedef struct		s_list
 {
-	char			*content;
-	struct s_list	*prev;
+	void			*content;
+	size_t			content_size;
 	struct s_list	*next;
 }					t_list;
 
@@ -46,6 +49,7 @@ void				ft_lstadd(t_list **alst, t_list *new);
 void				ft_lstdel(t_list **alst, void (*del)(void *, size_t));
 void				ft_lstdelone(t_list **alst, void (*del)(void *, size_t));
 void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
+int					get_next_line(const int fd, char **line);
 int					ft_memcmp(const void *s1, const void *s2, size_t n);
 int					ft_strcmp(const char *s1, const char *s2);
 int					ft_strncmp(const char *s1, const char *s2, size_t n);
